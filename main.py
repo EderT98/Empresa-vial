@@ -21,7 +21,7 @@ def mostrar_vector(obras):
     :return: None"""
 
     for una_obra in obras:
-        print(register.obras.to_string(una_obra))
+        print(register.to_string(una_obra))
 
 
 def contar_por_tipo(obras):
@@ -33,6 +33,7 @@ def contar_por_tipo(obras):
 
     for una_obra in obras:
         vec_conteo[una_obra.tipo_obra - 1] += 1
+    return vec_conteo
 
 
 def ordenar_obras(obras):
@@ -96,17 +97,20 @@ def main():
         if op == 0:
             print('Hasta luego!')
         elif op == 1:
-            n = validation.validar_positivo('Ingrese cantidad de obras:')
+            n = int(input('Ingrese cantidad de obras:'))
             obras = crear_vector(n)
         elif obras is None:
             print('Debe cargar los datos')
+
         elif op == 2:
             mostrar_vector(obras)
-        elif op == 3:
-            obras_por_tipo = contar_por_tipo(obras)
 
-            for i in range(len(obras_por_tipo)):
-                print('Tipo: ' + str(i + 1) + ' -> ' + str(obras_por_tipo[i]))
+        elif op == 3:
+
+            obras_cont = contar_por_tipo(obras)
+
+            for i in range(len(obras_cont)):
+                print('Tipo: ' + str(i + 1) + ' -> ' + str(obras_cont[i]))
 
         elif op == 4:
             ordenar_obras(obras)
@@ -114,7 +118,7 @@ def main():
             mostrar_vector(obras)
 
         elif op == 5:
-            a_buscar = validation.validar_positivo('Ingrese obra a buscar: ')
+            a_buscar = int(input('Ingrese obra a buscar: '))
 
             pos = buscar_obra(obras, a_buscar)
 
@@ -127,9 +131,9 @@ def main():
                 print('No existe')
 
         elif op == 6:
-            monto_minimo = validation.validar_positivo('Ingrese monto minimo: ')
+            monto_minimo = int(input('Ingrese monto minimo: '))
             cantidad_mayores = contar_presupuesto_mayor(obras, monto_minimo)
-            print('La cantidad de obras con presupuesto mayor a ', monto_minimo, 'es :', contar_presupuesto_mayor())
+            print('La cantidad de obras con presupuesto mayor a ', monto_minimo, 'es :', cantidad_mayores)
 
 
 main()

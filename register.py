@@ -2,8 +2,7 @@ import random
 
 
 class Obra:
-
-    def __index__(self, nro, tipo, presupuesto, costo, resp):
+    def __init__(self, nro, tipo, presupuesto, costo, resp):
         self.numero = nro
         self.tipo_obra = tipo
         self.presupuesto = presupuesto
